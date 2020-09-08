@@ -1,0 +1,38 @@
+@import 'globals';
+
+* {
+  font-family: $font;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 97%;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(153,187,255,1) 100%);
+
+  .textarea-block {
+    font-size: 20px;
+    width: 996px;
+    height: 200px;
+    margin-top: 20px;
+    background-color: #99bbff;
+    border: 2px solid black;
+    border-radius: 10px;
+  }
+
+  .keyboard-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 1010px;
+    margin: 30px;
+  }
+
+  @import 'kbButtons';
+}
