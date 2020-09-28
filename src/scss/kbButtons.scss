@@ -17,10 +17,19 @@
   }
 }
 
+sup {
+  margin-left: 8px;
+  font-size: 20px;
+}
+
 .-functional {
   padding: 5px;
   font-size: 16px;
   background-color: #d9d9d9;
+}
+
+._pressed {
+  background-color: #ffff66;
 }
 
 .-arrow {
@@ -52,6 +61,10 @@
 .-caps {
   width: 100px;
   text-align: left;
+}
+
+.capsActive {
+  background-color: #ffff66;
 }
 
 .-lshift {
