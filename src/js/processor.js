@@ -42,10 +42,15 @@ export function physicalClickHandler() {
   document.addEventListener('keydown', function(event) {
     highlightKey(event.code);
 
+    document.addEventListener('keyup', function (event) {
+      darkenKey(event.code);
+    });
+
     // if alt & shift are pressed together
     if (event.altKey && event.shiftKey) {
       event.preventDefault();
       changeLang();
+      return;
     }
 
     if (event.code == 'ShiftLeft' || event.code == 'ShiftRight') {
@@ -120,9 +125,6 @@ export function physicalClickHandler() {
       return;
     }
 
-    document.addEventListener('keyup', function (event) {
-      darkenKey(event.code);
-    });
 
     // if any other key is pressed
     tArea.innerHTML += event.key;
