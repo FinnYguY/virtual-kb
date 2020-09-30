@@ -37,98 +37,101 @@ export function changeLang() {
 
 // handle pressed key event
 export function physicalClickHandler() {
-  let tArea = document.querySelector('.textarea-block');
+    let tArea = document.querySelector('.textarea-block');
 
-  document.addEventListener('keydown', function(event) {
-    highlightKey(event.code);
+    document.addEventListener('keydown', function(event) {
+      highlightKey(event.code, event.key);
 
-    document.addEventListener('keyup', function (event) {
-      darkenKey(event.code);
-    });
+      document.addEventListener('keyup', function (event) {
+        darkenKey(event.code, event.key);
+      });
 
-    // if alt & shift are pressed together
-    if (event.altKey && event.shiftKey) {
-      event.preventDefault();
-      changeLang();
-      return;
-    }
-
-    if (event.code == 'ShiftLeft' || event.code == 'ShiftRight') {
-      return;
-    }
-
-    if (event.ctrlKey) {
-      return;
-    }
-
-    if (event.altKey) {
-      event.preventDefault();
-      return;
-    }
-
-    if (event.code == 'Tab') {
-      event.preventDefault();
-      tArea.innerHTML += '    ';
-      return;
-    }
-
-    if (event.code == 'CapsLock') {
-      changeRegister();
-      return;
-    }
-
-    if (event.code == 'Backspace') {
-      let tAreaText = document.querySelector('.textarea-block').innerHTML;
-      tAreaText = tAreaText.substring(0, tAreaText.length - 1);
-      tArea.innerHTML = tAreaText;
-      return;
-    }
-
-    if (event.code == 'Delete') {
-      let tAreaText = document.querySelector('.textarea-block').innerHTML;
-      tAreaText = tAreaText.substring(1, tAreaText.length);
-      tArea.innerHTML = tAreaText;
-      return;
-    }
-
-    if (event.code == 'Enter') {
-      tArea.innerHTML += '\n';
-      return;
-    }
-
-    if (event.metaKey) {
-      event.preventDefault();
-      return;
-    }
-
-    // if arrow key is pressed
-    if (event.code.match(constants.arrowRegExp)) {
-      if (event.code == 'ArrowUp') {
-        tArea.innerHTML += '↑';
+      if (event.location == 3) {
         return;
       }
 
-      if (event.code == 'ArrowDown') {
-        tArea.innerHTML += '↓';
+      // if alt & shift are pressed together
+      if (event.altKey && event.shiftKey) {
+        event.preventDefault();
+        changeLang();
         return;
       }
 
-      if (event.code == 'ArrowLeft') {
-        tArea.innerHTML += '←';
+      if (event.code == 'ShiftLeft' || event.code == 'ShiftRight') {
         return;
       }
 
-      if (event.code == 'ArrowRight') {
-        tArea.innerHTML += '→';
+      if (event.ctrlKey) {
         return;
       }
-      return;
-    }
 
+      if (event.altKey) {
+        event.preventDefault();
+        return;
+      }
 
-    // if any other key is pressed
-    tArea.innerHTML += event.key;
-  })
+      if (event.code == 'Tab') {
+        event.preventDefault();
+        tArea.innerHTML += '    ';
+        return;
+      }
+
+      if (event.code == 'CapsLock') {
+        changeRegister();
+        return;
+      }
+
+      if (event.code == 'Backspace') {
+        let tAreaText = document.querySelector('.textarea-block').innerHTML;
+        tAreaText = tAreaText.substring(0, tAreaText.length - 1);
+        tArea.innerHTML = tAreaText;
+        return;
+      }
+
+      if (event.code == 'Delete') {
+        let tAreaText = document.querySelector('.textarea-block').innerHTML;
+        tAreaText = tAreaText.substring(1, tAreaText.length);
+        tArea.innerHTML = tAreaText;
+        return;
+      }
+
+      if (event.code == 'Enter') {
+        tArea.innerHTML += '\n';
+        return;
+      }
+
+      if (event.metaKey) {
+        event.preventDefault();
+        return;
+      }
+
+      // if arrow key is pressed
+      if (event.code.match(constants.arrowRegExp)) {
+        if (event.code == 'ArrowUp') {
+          tArea.innerHTML += '↑';
+          return;
+        }
+
+        if (event.code == 'ArrowDown') {
+          tArea.innerHTML += '↓';
+          return;
+        }
+
+        if (event.code == 'ArrowLeft') {
+          tArea.innerHTML += '←';
+          return;
+        }
+
+        if (event.code == 'ArrowRight') {
+          tArea.innerHTML += '→';
+          return;
+        }
+        return;
+      }
+
+      // if any other key is pressed
+      tArea.innerHTML += event.key;
+    })
 }
 
 export const virtualClickHandler = function () {
@@ -137,6 +140,7 @@ export const virtualClickHandler = function () {
 
   kb.onclick = function (event) {
     let target = event.target;
+
     if (!target.classList.contains('keyboard-button')) return;
 
     if (target.innerHTML == 'Shift') {
@@ -223,17 +227,29 @@ export const virtualClickHandler = function () {
 }
 
 // highlight key
-export function highlightKey(keyCode) {
-  const pressedKey = document.querySelector(`.${keyCode}`);
+export function highlightKey(eventCode, eventKey) {
+  try {
+    const pressedKey = document.querySelector(`.${eventCode}`);
 
-  pressedKey.classList.add('_pressed');
+    pressedKey.classList.add('_pressed');
+  } catch (e) {
+    if (e.name == 'TypeError') {
+      console.log(`Pressed button (event.code = ${eventCode}, event.key = ${eventKey}) is not present on virtual keyboard`);
+    }
+  }
 }
 
 // darken key
-export function darkenKey(keyCode) {
-  const pressedKey = document.querySelector(`.${keyCode}`);
+export function darkenKey(eventCode, eventKey) {
+  try {
+    const pressedKey = document.querySelector(`.${eventCode}`);
 
-  pressedKey.classList.remove('_pressed');
+    pressedKey.classList.remove('_pressed');
+  } catch (e) {
+    if (e.name == 'TypeError') {
+      console.log(`Pressed button (event.code = ${eventCode}, event.key = ${eventKey}) is not present on virtual keyboard`);
+    }
+  }
 }
 
 export function changeRegister() {
