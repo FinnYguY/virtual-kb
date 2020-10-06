@@ -16,15 +16,15 @@ body {
   flex-wrap: nowrap;
   align-items: center;
   height: 97%;
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(153,187,255,1) 100%);
+  background: $gradientBg;
 
   .textarea-block {
     font-size: 20px;
     width: 996px;
     height: 200px;
     margin-top: 20px;
-    background-color: #99bbff;
-    border: 2px solid black;
+    background-color: $tAreaBg;
+    border: $defaultBlackBorder;
     border-radius: 10px;
     outline: none;
   }
