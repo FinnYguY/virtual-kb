@@ -1,0 +1,105 @@
+.keyboard-button {
+  font-size: 25px;
+  width: 60px;
+  height: 60px;
+  margin: 3px;
+  border: $defaultBlackBorder;
+  border-radius: 5px;
+  background-color: $buttonBg;
+  outline: none;
+
+  &:hover {
+    background-color: $kbButtonHover;
+  }
+
+  &:active {
+    background-color: $kbButtonActive;
+  }
+}
+
+sup {
+  margin-left: 8px;
+  font-size: 20px;
+}
+
+.-functional {
+  padding: 5px;
+  font-size: 16px;
+  background-color: $kbButtonFuncHover;
+}
+
+._pressed {
+  background-color: $kbButtonFuncActive;
+}
+
+.-arrow {
+  font-size: 25px;
+  width: 60px;
+  height: 60px;
+  margin: 3px;
+  border: $defaultBlackBorder;
+  border-radius: 5px;
+}
+
+.-win {
+  font-size: 25px;
+}
+
+.-space {
+  width: 135px;
+}
+
+.-tab {
+  width: 80px;
+  text-align: left;
+}
+
+.-del {
+  text-align: right;
+}
+
+.-caps {
+  width: 100px;
+  text-align: left;
+}
+
+.capsActive {
+  background-color: $kbButtonActive;
+}
+
+.-lshift {
+  width: 120px;
+  text-align: left;
+}
+
+.-lctrl {
+  text-align: left;
+}
+
+.-backspace {
+  width: 146px;
+  text-align: right;
+}
+
+.-enter {
+  width: 172px;
+  text-align: right;
+}
+
+.-rshift {
+  width: 152px;
+  text-align: right;
+}
+
+.-space {
+  width: 384px;
+}
+
+.-info {
+  width: 86px;
+  text-align: right;
+}
+
+.lineBreak {
+  width: 100%;
+}

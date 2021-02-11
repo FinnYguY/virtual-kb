@@ -1,0 +1,44 @@
+@import 'globals';
+
+* {
+  font-family: $font;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  height: 97%;
+  background: $gradientBg;
+
+  .textarea-block {
+    font-size: 20px;
+    width: 996px;
+    height: 200px;
+    margin-top: 20px;
+    background-color: $tAreaBg;
+    border: $defaultBlackBorder;
+    border-radius: 10px;
+    outline: none;
+  }
+
+  .keyboard-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 1010px;
+    margin: 30px;
+    user-select: none;
+  }
+
+  @import 'kbButtons';
+
+  @import 'infoBlock';
+}
